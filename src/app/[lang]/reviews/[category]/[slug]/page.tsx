@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -72,9 +73,35 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         {review.category} · {review.neighborhood} · {review.rating}
       </p>
       <h1 className="font-display mt-2 text-6xl">{review.name}</h1>
+      <p className="mt-2 text-sm text-dam-muted">{review.address}</p>
       <p className="mt-4 leading-7 text-dam-muted">{review.excerpt[lang]}</p>
-      <article className="mt-8 leading-8">
-        <p>{review.body[lang]}</p>
+      
+      {review.images && review.images.length > 0 && (
+        <div className="mt-8 space-y-6">
+          {review.images.map((image, index) => (
+            <figure key={index} className="overflow-hidden rounded-lg">
+              <Image
+                src={image.src}
+                alt={image.alt[lang]}
+                width={760}
+                height={507}
+                className="h-auto w-full object-cover"
+                priority={index === 0}
+              />
+              {image.caption && (
+                <figcaption className="mt-2 text-center text-sm text-dam-muted">
+                  {image.caption[lang]}
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      )}
+      
+      <article className="mt-8 space-y-4 leading-8">
+        {review.body[lang].split('\n\n').map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
       </article>
     </main>
   );
