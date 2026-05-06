@@ -73,6 +73,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         {review.category} · {review.neighborhood} · {review.rating}
       </p>
       <h1 className="font-display mt-2 text-6xl">{review.name}</h1>
+      <p className="mt-2 text-sm text-dam-muted">{review.address}</p>
       <p className="mt-4 leading-7 text-dam-muted">{review.excerpt[lang]}</p>
       
       {review.images && review.images.length > 0 && (
