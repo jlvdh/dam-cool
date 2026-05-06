@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { PlaceCard } from "@/components/PlaceCard";
 import { Section } from "@/components/Section";
+import { reviewCategories, venueReviews } from "@/content/reviews";
 import { siteContent, type Locale } from "@/content/siteContent";
 
 type PageProps = {
@@ -12,6 +14,7 @@ export default async function Home({ searchParams }: PageProps) {
   const { lang } = await searchParams;
   const locale: Locale = lang === "en" ? "en" : "nl";
   const copy = siteContent[locale];
+  const homeReviews = venueReviews.slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -76,25 +79,11 @@ export default async function Home({ searchParams }: PageProps) {
           <a href="#contact" className="underline-offset-4 hover:underline">
             {copy.nav.contact}
           </a>
+          <Link href={`/${locale}/reviews`} className="underline-offset-4 hover:underline">
+            Reviews
+          </Link>
           </nav>
-          <div className="inline-flex gap-2" aria-label="Language switcher">
-            <Link
-              href="/?lang=nl"
-            className={`rounded-chip px-2.5 py-1 text-xs ${
-              locale === "nl" ? "font-semibold text-dam-ink underline underline-offset-4" : "text-dam-muted"
-              }`}
-            >
-              NL
-            </Link>
-            <Link
-              href="/?lang=en"
-            className={`rounded-chip px-2.5 py-1 text-xs ${
-              locale === "en" ? "font-semibold text-dam-ink underline underline-offset-4" : "text-dam-muted"
-              }`}
-            >
-              EN
-            </Link>
-          </div>
+          <LanguageSwitcher locale={locale} nlHref="/?lang=nl" enHref="/?lang=en" />
         </div>
       </header>
 
@@ -118,8 +107,61 @@ export default async function Home({ searchParams }: PageProps) {
             >
               {copy.hero.ctaSecondary}
             </a>
+            <Link
+              href={`/${locale}/reviews`}
+              className="rounded-chip px-4 py-2 font-medium text-dam-ink underline underline-offset-4"
+            >
+              {locale === "nl" ? "Bekijk reviews" : "Browse reviews"}
+            </Link>
           </div>
         </section>
+
+        <Section
+          id="reviews"
+          title={locale === "nl" ? "Venue reviews" : "Venue reviews"}
+          intro={
+            locale === "nl"
+              ? "Directe links naar categorieen en recente reviews."
+              : "Direct links to categories and recent reviews."
+          }
+        >
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <h3 className="font-display text-2xl">
+                {locale === "nl" ? "Categorieen" : "Categories"}
+              </h3>
+              <ul className="mt-2 grid gap-2">
+                {reviewCategories.map((category) => (
+                  <li key={category}>
+                    <Link
+                      href={`/${locale}/reviews/${category}`}
+                      className="underline underline-offset-4"
+                    >
+                      {category}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-display text-2xl">
+                {locale === "nl" ? "Recente reviews" : "Recent reviews"}
+              </h3>
+              <ul className="mt-2 grid gap-2">
+                {homeReviews.map((review) => (
+                  <li key={review.slug}>
+                    <Link
+                      href={`/${locale}/reviews/${review.category}/${review.slug}`}
+                      className="underline underline-offset-4"
+                    >
+                      {review.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Section>
 
         <Section id="spots" title={copy.featured.title} intro={copy.featured.intro}>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-4">
