@@ -48,7 +48,7 @@ export const venueReviews: VenueReview[] = [
     },
     images: [
       {
-        src: "/little-collins-halloumi-cornbread.jpg",
+        src: "https://images.dam.cool/reviews/IMG_1845.jpeg",
         alt: {
           nl: "Gefrituurde halloumi met cornbread - Little Collins' vegetarische versie van waffle chicken",
           en: "Fried halloumi with cornbread - Little Collins' vegetarian take on waffle chicken",
