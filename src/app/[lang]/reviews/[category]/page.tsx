@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   isLocale,
   isReviewCategory,
   locales,
-  reviewCategories,
+  reviewCategoriesWithReviews,
   venueReviews,
 } from "@/content/reviews";
 
@@ -16,7 +17,7 @@ type PageProps = {
 
 export async function generateStaticParams() {
   return locales.flatMap((lang) =>
-    reviewCategories.map((category) => ({ lang, category })),
+    reviewCategoriesWithReviews.map((category) => ({ lang, category })),
   );
 }
 
@@ -41,8 +42,10 @@ export default async function CategoryPage({ params }: PageProps) {
   if (!isLocale(lang) || !isReviewCategory(category)) notFound();
 
   const reviews = venueReviews.filter((review) => review.category === category);
+  if (reviews.length === 0) notFound();
 
   return (
+    <>
     <main className="mx-auto max-w-[1080px] px-5 pb-12 pt-8">
       <div className="mb-4 flex justify-end">
         <LanguageSwitcher
@@ -71,5 +74,7 @@ export default async function CategoryPage({ params }: PageProps) {
         ))}
       </ul>
     </main>
+    <SiteFooter locale={lang} />
+    </>
   );
 }

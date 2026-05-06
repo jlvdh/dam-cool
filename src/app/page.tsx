@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { PlaceCard } from "@/components/PlaceCard";
 import { Section } from "@/components/Section";
-import { reviewCategories, venueReviews } from "@/content/reviews";
+import { SiteFooter } from "@/components/SiteFooter";
+import { venueReviewsWithImages } from "@/content/reviews";
 import { siteContent, type Locale } from "@/content/siteContent";
 
 type PageProps = {
@@ -14,7 +14,7 @@ export default async function Home({ searchParams }: PageProps) {
   const { lang } = await searchParams;
   const locale: Locale = lang === "en" ? "en" : "nl";
   const copy = siteContent[locale];
-  const homeReviews = venueReviews.slice(0, 3);
+  const spotlightReviews = venueReviewsWithImages(2);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -24,35 +24,17 @@ export default async function Home({ searchParams }: PageProps) {
         name: "dam.cool",
         url: "https://dam.cool",
         inLanguage: ["nl", "en"],
-        description:
-          locale === "nl"
-            ? "Coole plekken in Amsterdam."
-            : "Cool places in Amsterdam.",
-      },
-      {
-        "@type": "ItemList",
-        name: locale === "nl" ? "Uitgelichte plekken" : "Featured spots",
-        itemListElement: copy.places.map((place, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: {
-            "@type": "TouristAttraction",
-            name: place.name,
-            description: place.description,
-            address: place.address,
-            containedInPlace: "Amsterdam",
-          },
-        })),
+        description: copy.hero.title,
       },
     ],
   };
 
   return (
     <div className="mx-auto max-w-[1080px] px-5 pb-12 pt-6">
-      <header className="rounded-card p-4">
+      <header className="rounded-card flex flex-col items-center gap-4 p-6">
         <Link
           href={locale === "nl" ? "/?lang=nl" : "/?lang=en"}
-          className="mb-4 flex justify-center"
+          className="flex justify-center hover:opacity-90"
         >
           <Image
             src="/logo-dam-cool.png"
@@ -62,29 +44,7 @@ export default async function Home({ searchParams }: PageProps) {
             priority
           />
         </Link>
-        <div className="flex flex-col items-center gap-3 md:flex-row md:justify-between">
-          <nav
-            aria-label="Primary"
-            className="font-display flex flex-wrap justify-center gap-4 text-2xl"
-          >
-          <a href="#spots" className="underline-offset-4 hover:underline">
-            {copy.nav.spots}
-          </a>
-          <a href="#categories" className="underline-offset-4 hover:underline">
-            {copy.nav.categories}
-          </a>
-          <a href="#about" className="underline-offset-4 hover:underline">
-            {copy.nav.about}
-          </a>
-          <a href="#contact" className="underline-offset-4 hover:underline">
-            {copy.nav.contact}
-          </a>
-          <Link href={`/${locale}/reviews`} className="underline-offset-4 hover:underline">
-            Reviews
-          </Link>
-          </nav>
-          <LanguageSwitcher locale={locale} nlHref="/?lang=nl" enHref="/?lang=en" />
-        </div>
+        <LanguageSwitcher locale={locale} nlHref="/?lang=nl" enHref="/?lang=en" />
       </header>
 
       <main className="mt-6 grid gap-10">
@@ -95,94 +55,61 @@ export default async function Home({ searchParams }: PageProps) {
           </h1>
           <p className="max-w-[65ch] leading-7 text-dam-muted">{copy.hero.subtitle}</p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <a
-              href="#spots"
+            <Link
+              href={`/${locale}/reviews`}
               className="rounded-chip px-4 py-2 font-medium text-dam-ink underline underline-offset-4"
             >
               {copy.hero.ctaPrimary}
-            </a>
+            </Link>
             <a
               href="#about"
               className="rounded-chip px-4 py-2 font-medium text-dam-muted underline underline-offset-4"
             >
               {copy.hero.ctaSecondary}
             </a>
-            <Link
-              href={`/${locale}/reviews`}
-              className="rounded-chip px-4 py-2 font-medium text-dam-ink underline underline-offset-4"
-            >
-              {locale === "nl" ? "Bekijk reviews" : "Browse reviews"}
-            </Link>
           </div>
         </section>
 
-        <Section
-          id="reviews"
-          title={locale === "nl" ? "Venue reviews" : "Venue reviews"}
-          intro={
-            locale === "nl"
-              ? "Directe links naar categorieen en recente reviews."
-              : "Direct links to categories and recent reviews."
-          }
-        >
-          <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <h3 className="font-display text-2xl">
-                {locale === "nl" ? "Categorieen" : "Categories"}
-              </h3>
-              <ul className="mt-2 grid gap-2">
-                {reviewCategories.map((category) => (
-                  <li key={category}>
-                    <Link
-                      href={`/${locale}/reviews/${category}`}
-                      className="underline underline-offset-4"
-                    >
-                      {category}
+        {spotlightReviews.length > 0 ? (
+          <section id="spotlight-reviews" className="rounded-card p-section">
+            <div className="grid gap-8 md:grid-cols-2 md:gap-10">
+              {spotlightReviews.map((review, index) => {
+                const heroImage = review.images![0];
+                const href = `/${locale}/reviews/${review.category}/${review.slug}`;
+                const caption =
+                  heroImage.caption?.[locale] ?? heroImage.alt[locale];
+                return (
+                  <article key={review.slug}>
+                    <Link href={href} className="group block">
+                      <div className="relative aspect-4/3 w-full overflow-hidden md:aspect-16/11 md:min-h-[280px]">
+                        <Image
+                          src={heroImage.src}
+                          alt={heroImage.alt[locale]}
+                          fill
+                          className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                          sizes="(max-width: 768px) 100vw, calc(1080px / 2 - 2rem)"
+                          priority={index < 2}
+                        />
+                      </div>
+                      <div className="mt-5">
+                        <p className="text-sm text-dam-muted">
+                          {review.category} · {review.neighborhood}
+                        </p>
+                        <h3 className="font-display mt-2 text-4xl leading-none tracking-tight md:text-5xl">
+                          {review.name}
+                        </h3>
+                        <p className="mt-3 max-w-[50ch] leading-7 text-dam-muted">{caption}</p>
+                        <p className="mt-3 font-medium underline underline-offset-4 group-hover:text-dam-soft">
+                          {copy.spotlight.readReview}
+                        </p>
+                      </div>
                     </Link>
-                  </li>
-                ))}
-              </ul>
+                  </article>
+                );
+              })}
             </div>
-            <div>
-              <h3 className="font-display text-2xl">
-                {locale === "nl" ? "Recente reviews" : "Recent reviews"}
-              </h3>
-              <ul className="mt-2 grid gap-2">
-                {homeReviews.map((review) => (
-                  <li key={review.slug}>
-                    <Link
-                      href={`/${locale}/reviews/${review.category}/${review.slug}`}
-                      className="underline underline-offset-4"
-                    >
-                      {review.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Section>
-
-        <Section id="spots" title={copy.featured.title} intro={copy.featured.intro}>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-4">
-            {copy.places.map((place) => (
-              <PlaceCard key={place.name} place={place} typeLabel={copy.placeTypeLabel} />
-            ))}
-          </div>
-        </Section>
-
-        <Section id="categories" title={copy.categories.title}>
-          <ul className="flex flex-wrap gap-2">
-            {copy.categories.items.map((item) => (
-              <li
-                key={item}
-                className="rounded-full px-3 py-1.5"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </Section>
+          </section>
+        ) : null}
 
         <Section id="about" title={copy.about.title}>
           <p className="max-w-[70ch] leading-7 text-dam-muted">{copy.about.body}</p>
@@ -199,7 +126,7 @@ export default async function Home({ searchParams }: PageProps) {
         </Section>
       </main>
 
-      <footer className="mt-5 text-center text-sm text-dam-muted">{copy.footer}</footer>
+      <SiteFooter locale={locale} />
 
       <script
         type="application/ld+json"

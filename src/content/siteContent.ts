@@ -1,17 +1,10 @@
 export type Locale = "nl" | "en";
 
-export type Place = {
-  name: string;
-  category: string;
-  neighborhood: string;
-  description: string;
-  address: string;
-};
-
 type SiteCopy = {
   nav: {
-    spots: string;
+    home: string;
     categories: string;
+    recentReviews: string;
     about: string;
     contact: string;
   };
@@ -22,14 +15,6 @@ type SiteCopy = {
     ctaPrimary: string;
     ctaSecondary: string;
   };
-  featured: {
-    title: string;
-    intro: string;
-  };
-  categories: {
-    title: string;
-    items: string[];
-  };
   about: {
     title: string;
     body: string;
@@ -39,34 +24,28 @@ type SiteCopy = {
     body: string;
     emailLabel: string;
   };
+  spotlight: {
+    readReview: string;
+  };
   footer: string;
-  placeTypeLabel: string;
-  places: Place[];
 };
 
 export const siteContent: Record<Locale, SiteCopy> = {
   nl: {
     nav: {
-      spots: "Plekken",
+      home: "Home",
       categories: "Categorieen",
+      recentReviews: "Recente reviews",
       about: "Over",
       contact: "Contact",
     },
     hero: {
-      eyebrow: "Amsterdam Curated",
-      title: "Coole plekken in Amsterdam.",
+      eyebrow: "Dam Cool",
+      title: "Damn cool places in Amsterdam.",
       subtitle:
-        "dam.cool is een minimalistische gids voor plekken met karakter: van koffie en platen tot kunst, nacht en onverwachte hoekjes.",
-      ctaPrimary: "Bekijk plekken",
+        "Geen geplastificeerde top-tienlijsten en geen 'echt Amsterdam'-theater. Dit gaat om zaken met nog een hartslag: koffie die je fietsrit waard is, kratten platen waar je doorheen wroet, kunst met bijt, nachten die langer duren dan de laatste tram, en hoeken die deze stad nog niet heeft klaargestoomd voor je feed.",
+      ctaPrimary: "Bekijk reviews",
       ctaSecondary: "Lees meer",
-    },
-    featured: {
-      title: "Uitgelichte plekken",
-      intro: "Kleine selectie om mee te starten.",
-    },
-    categories: {
-      title: "Categorieen",
-      items: ["Koffie", "Eten", "Vinyl", "Kunst", "Nacht", "Buiten"],
     },
     about: {
       title: "Over dam.cool",
@@ -77,54 +56,26 @@ export const siteContent: Record<Locale, SiteCopy> = {
       body: "Ken je een plek die hier thuishoort? Stuur een korte tip.",
       emailLabel: "Mail ons",
     },
+    spotlight: {
+      readReview: "Lees review",
+    },
     footer: "dam.cool - coole plekken in Amsterdam",
-    placeTypeLabel: "Plek",
-    places: [
-      {
-        name: "Schellingwouderbrug uitzichtpunt",
-        category: "Buiten",
-        neighborhood: "Noord",
-        description: "Wind, water en skyline op vijf minuten van de drukte.",
-        address: "Schellingwouderbrug, Amsterdam",
-      },
-      {
-        name: "Lab111",
-        category: "Kunst",
-        neighborhood: "Oud-West",
-        description: "Eigenzinnige films, expo's en een cafe in oud laboratorium.",
-        address: "Arie Biemondstraat 111, Amsterdam",
-      },
-      {
-        name: "Rush Hour",
-        category: "Vinyl",
-        neighborhood: "Centrum",
-        description: "Iconische platenwinkel met lokale en internationale selectie.",
-        address: "Spuistraat 116, Amsterdam",
-      },
-    ],
   },
   en: {
     nav: {
-      spots: "Spots",
+      home: "Home",
       categories: "Categories",
+      recentReviews: "Recent reviews",
       about: "About",
       contact: "Contact",
     },
     hero: {
-      eyebrow: "Amsterdam Curated",
-      title: "Cool places in Amsterdam.",
+      eyebrow: "Dam Cool",
+      title: "Damn cool places in Amsterdam.",
       subtitle:
-        "dam.cool is a minimalist city guide for places with character, from coffee and vinyl to art, night life and unexpected corners.",
-      ctaPrimary: "Explore spots",
+        "Forget the laminated top tens and the 'authentic Amsterdam' racket. dam.cool chases rooms that still have a pulse — coffee worth walking for, crates of vinyl you actually dig through, art with teeth, nights that outlast the last tram, and corners this city hasn't packaged for the feed yet.",
+      ctaPrimary: "Browse reviews",
       ctaSecondary: "Read about us",
-    },
-    featured: {
-      title: "Featured spots",
-      intro: "A small handpicked starter selection.",
-    },
-    categories: {
-      title: "Categories",
-      items: ["Coffee", "Food", "Vinyl", "Art", "Night", "Outdoor"],
     },
     about: {
       title: "About dam.cool",
@@ -135,32 +86,9 @@ export const siteContent: Record<Locale, SiteCopy> = {
       body: "Know a place that belongs here? Send a short recommendation.",
       emailLabel: "Email us",
     },
+    spotlight: {
+      readReview: "Read review",
+    },
     footer: "dam.cool - cool places in Amsterdam",
-    placeTypeLabel: "Place",
-    places: [
-      {
-        name: "Schellingwouderbrug viewpoint",
-        category: "Outdoor",
-        neighborhood: "Noord",
-        description: "Wind, water and skyline a few minutes from the crowds.",
-        address: "Schellingwouderbrug, Amsterdam",
-      },
-      {
-        name: "Lab111",
-        category: "Art",
-        neighborhood: "Oud-West",
-        description:
-          "Bold film programming, exhibitions and a cafe in a former lab.",
-        address: "Arie Biemondstraat 111, Amsterdam",
-      },
-      {
-        name: "Rush Hour",
-        category: "Vinyl",
-        neighborhood: "Centrum",
-        description:
-          "Iconic record store with local and international curation.",
-        address: "Spuistraat 116, Amsterdam",
-      },
-    ],
   },
 };

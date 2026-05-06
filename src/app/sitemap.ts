@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
-import { locales, reviewCategories, venueReviews } from "@/content/reviews";
+import {
+  locales,
+  reviewCategoriesWithReviews,
+  venueReviews,
+} from "@/content/reviews";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://dam.cool";
@@ -13,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const reviewCategoryEntries: MetadataRoute.Sitemap = locales.flatMap((lang) =>
-    reviewCategories.map((category) => ({
+    reviewCategoriesWithReviews.map((category) => ({
       url: `${baseUrl}/${lang}/reviews/${category}`,
       lastModified: now,
       changeFrequency: "weekly",

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   isLocale,
   isReviewCategory,
@@ -58,6 +59,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
   if (!review) notFound();
 
   return (
+    <>
     <main className="mx-auto max-w-[760px] px-5 pb-12 pt-8">
       <div className="mb-4 flex justify-end">
         <LanguageSwitcher
@@ -79,7 +81,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       {review.images && review.images.length > 0 && (
         <div className="mt-8 space-y-6">
           {review.images.map((image, index) => (
-            <figure key={index} className="overflow-hidden rounded-lg">
+            <figure key={index} className="overflow-hidden">
               <Image
                 src={image.src}
                 alt={image.alt[lang]}
@@ -104,5 +106,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         ))}
       </article>
     </main>
+    <SiteFooter locale={lang} />
+    </>
   );
 }

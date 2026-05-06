@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   isLocale,
   locales,
-  reviewCategories,
+  reviewCategoriesWithReviews,
   venueReviews,
 } from "@/content/reviews";
 
@@ -34,7 +35,6 @@ export async function generateMetadata({
 export default async function ReviewsIndexPage({ params }: PageProps) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
-
   const copy =
     lang === "nl"
       ? {
@@ -49,6 +49,7 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
         };
 
   return (
+    <>
     <main className="mx-auto max-w-[1080px] px-5 pb-12 pt-8">
       <div className="mb-4 flex justify-end">
         <LanguageSwitcher locale={lang} nlHref="/nl/reviews" enHref="/en/reviews" />
@@ -58,7 +59,7 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
       <section className="mt-8">
         <h2 className="font-display text-3xl">{copy.categories}</h2>
         <ul className="mt-3 flex flex-wrap gap-3">
-          {reviewCategories.map((category) => (
+          {reviewCategoriesWithReviews.map((category) => (
             <li key={category}>
               <Link
                 href={`/${lang}/reviews/${category}`}
@@ -87,5 +88,7 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
         </ul>
       </section>
     </main>
+    <SiteFooter locale={lang} />
+    </>
   );
 }

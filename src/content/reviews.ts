@@ -211,6 +211,19 @@ export const venueReviews: VenueReview[] = [
   },
 ];
 
+const reviewCategorySet = new Set(
+  venueReviews.map((review) => review.category),
+);
+
+/** Categories with at least one review — use for links; empty categories stay out of the UI. */
+export const reviewCategoriesWithReviews: ReviewCategory[] =
+  reviewCategories.filter((category) => reviewCategorySet.has(category));
+
+/** First reviews that have imagery (e.g. homepage spotlight grid). */
+export function venueReviewsWithImages(limit = 2): VenueReview[] {
+  return venueReviews.filter((review) => review.images?.length).slice(0, limit);
+}
+
 export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
