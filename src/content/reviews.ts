@@ -33,6 +33,80 @@ export type VenueReview = {
 
 export const venueReviews: VenueReview[] = [
   {
+    slug: "bottle-shop-wibautstraat",
+    category: "restaurant",
+    name: "Bottle Shop",
+    neighborhood: "Oost",
+    address: "Wibautstraat 125, 1091 GP Amsterdam",
+    rating: 4.6,
+    publishedAt: "2026-05-06",
+    excerpt: {
+      nl: "Een wijnzaak die je fatsoenlijk te eten geeft. Omar Sanchez snapt het — en dat proef je in elk gerecht.",
+      en: "A wine shop that feeds you properly. Omar Sanchez gets it — and you taste it in every dish.",
+    },
+    body: {
+      nl: "Er is een moment wanneer je Bottle Shop binnenloopt en je begrijpt dat hier iemand echt zijn best heeft gedaan. Niet het soort doen-alsof dat je op foodstagram ziet, maar het echte werk — het soort dat terugkomt in elke beslissing, van de natuurwijnen op de plank tot de manier waarop Omar Sanchez twee oesters met tajín en jalapeño de deur uit stuurt alsof het de normaalste zaak van de wereld is. Wat het, als je er goed over nadenkt, ook is.\n\nDe Wibautstraat was ooit Amsterdams enigszins trieste poging tot een boulevard — het soort straat dat te hard zijn best deed en tekortschoot. Maar de buurt heeft zichzelf stilletjes en koppig opnieuw uitgevonden, en plekken als Bottle Shop zijn de reden. Dit is een wijnzaak die je fatsoenlijk te eten geeft, want wie ook heeft bedacht dat je die twee ervaringen zou moeten scheiden, begreep er duidelijk geen van beiden.\n\nLaten we het over de tartaar hebben. Hij komt op een masa tostada, met een gezouten eidooier de kleur van barnsteen. Simpel in theorie. In de uitvoering is het het soort gerecht dat je je vork neer laat leggen om even na te denken over waar je bent en hoe gelukkig je bent er te zijn. Het textuurcontrast tussen het met de hand gesneden vlees en de knapperige tostada is leerboek — niet omdat iemand een leerboek heeft bestudeerd, maar omdat iemand heeft opgelet.\n\nDe gestoofde short rib op witte bonen en kruidenolie is geduld op een bord. Vlees wordt niet zo mals zonder respect voor het proces. En de geroosterde cichorei op maïscrème — geschaafde harde kaas erbovenop, bladeren die hun bittere kant vasthouden — is het soort groentegerecht waardoor je vergeet dat je eerst het vlees had besteld.\n\nKom hier voor de wijn. Blijf voor het eten. Kom terug omdat Amsterdam meer van dit soort plekken nodig heeft — plekken met een standpunt, een keuken die zich niet achter de menukaart verschuilt, en een kok die duidelijk heeft geleerd koken op een plek die er toe deed.",
+      en: "There's a moment when you walk into Bottle Shop and you understand that someone here gave a damn. Not the kind of performative giving-a-damn you see on food Instagram, but the real thing — the kind that shows up in every decision, from the natural wines on the shelf to the way Omar Sanchez sends out two oysters dusted with tajín and jalapeño like it's the most natural thing in the world. Which, come to think of it, it is.\n\nWibautstraat was once Amsterdam's sorry attempt at a boulevard — the kind of street that tried too hard and fell short. But the neighborhood has been quietly, stubbornly reinventing itself, and places like Bottle Shop are why. This is a wine shop that feeds you properly, because whoever thought you should separate the two experiences clearly never understood either one.\n\nLet's talk about the tartare. It arrives on a masa tostada, crowned with a cured egg yolk the color of amber. Simple in theory. In execution, it's the kind of dish that makes you put your fork down and think about where you are and how lucky you are to be there. The texture contrast between the hand-cut beef and the crispy tostada is textbook — not because someone studied a textbook, but because someone paid attention.\n\nThe braised short rib on white beans and herb oil is patience on a plate. You don't get meat that tender without respecting the process. And the roasted chicory on corn cream — hard cheese shaved on top, the leaves still holding their bitter edge — is the kind of vegetable dish that makes you forget you ordered the meat first.\n\nCome here for the wine. Stay for the food. Return because Amsterdam needs more of this — places with a point of view, a kitchen that doesn't hide behind the menu, and a chef who clearly learned to cook somewhere that mattered.",
+    },
+    images: [
+      {
+        src: "https://images.dam.cool/reviews/bottle-shop-1.jpeg",
+        alt: {
+          nl: "Oesters met tajín en jalapeño op ijs — Bottle Shop",
+          en: "Oysters with tajín and jalapeño on ice — Bottle Shop",
+        },
+        caption: {
+          nl: "Oesters met tajín, jalapeño en rode saus — simpel en precies goed",
+          en: "Oysters with tajín, jalapeño and red sauce — simple and exactly right",
+        },
+      },
+      {
+        src: "https://images.dam.cool/reviews/bottle-shop-2.jpeg",
+        alt: {
+          nl: "Bieftartaar op masa tostada met gezouten eidooier — Bottle Shop",
+          en: "Beef tartare on masa tostada with cured egg yolk — Bottle Shop",
+        },
+        caption: {
+          nl: "Bieftartaar op masa tostada met gezouten eidooier — geduld en precisie",
+          en: "Beef tartare on masa tostada with cured egg yolk — patience and precision",
+        },
+      },
+      {
+        src: "https://images.dam.cool/reviews/bottle-shop-3.jpeg",
+        alt: {
+          nl: "Gestoofde short rib op witte bonen met kruidenolie — Bottle Shop",
+          en: "Braised short rib on white beans with herb oil — Bottle Shop",
+        },
+        caption: {
+          nl: "Short rib gestoofd tot hij vanzelf uiteenvalt — geduld op een bord",
+          en: "Short rib braised until it falls apart — patience on a plate",
+        },
+      },
+      {
+        src: "https://images.dam.cool/reviews/bottle-shop-4.jpeg",
+        alt: {
+          nl: "Geroosterde cichorei op maïscrème met geschaafde kaas — Bottle Shop",
+          en: "Roasted chicory on corn cream with shaved cheese — Bottle Shop",
+        },
+        caption: {
+          nl: "Geroosterde cichorei op maïscrème — het groentegerecht dat je bij blijft",
+          en: "Roasted chicory on corn cream — the vegetable dish you won't forget",
+        },
+      },
+      {
+        src: "https://images.dam.cool/reviews/bottle-shop-5.jpeg",
+        alt: {
+          nl: "Krokant gefrituurde kroket in roomsaus met venkel — Bottle Shop",
+          en: "Crispy fried croquette in cream sauce with fennel — Bottle Shop",
+        },
+        caption: {
+          nl: "Knapperige kroket in een fluweelzachte roomsaus — comfort zonder concessies",
+          en: "Crispy croquette in a velvety cream sauce — comfort without compromise",
+        },
+      },
+    ],
+  },
+  {
     slug: "little-collins-amsterdam",
     category: "restaurant",
     name: "Little Collins",
