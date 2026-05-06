@@ -50,7 +50,7 @@ export const venueReviews: VenueReview[] = [
     },
     images: [
       {
-        src: "https://images.dam.cool/reviews/bottle-shop-1.jpeg",
+        src: "https://images.dam.cool/reviews/IMG_1762.jpeg",
         alt: {
           nl: "Oesters met tajín en jalapeño op ijs — Bottle Shop",
           en: "Oysters with tajín and jalapeño on ice — Bottle Shop",
@@ -61,7 +61,7 @@ export const venueReviews: VenueReview[] = [
         },
       },
       {
-        src: "https://images.dam.cool/reviews/bottle-shop-2.jpeg",
+        src: "https://images.dam.cool/reviews/IMG_1763.jpeg",
         alt: {
           nl: "Bieftartaar op masa tostada met gezouten eidooier — Bottle Shop",
           en: "Beef tartare on masa tostada with cured egg yolk — Bottle Shop",
@@ -72,7 +72,7 @@ export const venueReviews: VenueReview[] = [
         },
       },
       {
-        src: "https://images.dam.cool/reviews/bottle-shop-3.jpeg",
+        src: "https://images.dam.cool/reviews/IMG_1764.jpeg",
         alt: {
           nl: "Gestoofde short rib op witte bonen met kruidenolie — Bottle Shop",
           en: "Braised short rib on white beans with herb oil — Bottle Shop",
@@ -83,7 +83,7 @@ export const venueReviews: VenueReview[] = [
         },
       },
       {
-        src: "https://images.dam.cool/reviews/bottle-shop-4.jpeg",
+        src: "https://images.dam.cool/reviews/IMG_1765.jpeg",
         alt: {
           nl: "Geroosterde cichorei op maïscrème met geschaafde kaas — Bottle Shop",
           en: "Roasted chicory on corn cream with shaved cheese — Bottle Shop",
@@ -94,7 +94,7 @@ export const venueReviews: VenueReview[] = [
         },
       },
       {
-        src: "https://images.dam.cool/reviews/bottle-shop-5.jpeg",
+        src: "https://images.dam.cool/reviews/IMG_1766.jpeg",
         alt: {
           nl: "Krokant gefrituurde kroket in roomsaus met venkel — Bottle Shop",
           en: "Crispy fried croquette in cream sauce with fennel — Bottle Shop",
@@ -102,6 +102,28 @@ export const venueReviews: VenueReview[] = [
         caption: {
           nl: "Knapperige kroket in een fluweelzachte roomsaus — comfort zonder concessies",
           en: "Crispy croquette in a velvety cream sauce — comfort without compromise",
+        },
+      },
+      {
+        src: "https://images.dam.cool/reviews/IMG_1767.jpeg",
+        alt: {
+          nl: "Wibautstraat — sfeerimpressie Bottle Shop",
+          en: "Wibautstraat — Bottle Shop atmosphere",
+        },
+        caption: {
+          nl: "De zaak op de Wibaut: wijnzaak en restaurant in één",
+          en: "The Wibaut spot: wine shop and restaurant in one",
+        },
+      },
+      {
+        src: "https://images.dam.cool/reviews/IMG_1768.jpeg",
+        alt: {
+          nl: "Natuurwijn en flessen bij Bottle Shop",
+          en: "Natural wine and bottles at Bottle Shop",
+        },
+        caption: {
+          nl: "Kom voor de wijn — de planken maken duidelijk waarom",
+          en: "Come for the wine — the shelves make it obvious why",
         },
       },
     ],
