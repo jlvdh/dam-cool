@@ -177,6 +177,23 @@ export const venueReviews: VenueReview[] = [
     },
   },
   {
+    slug: "de-predetarier-de-pijp",
+    category: "lunch",
+    name: "De Predetariër",
+    neighborhood: "De Pijp",
+    address: "Gerard Doustraat 180H, 1073 XA Amsterdam",
+    rating: 4.5,
+    publishedAt: "2026-05-10",
+    excerpt: {
+      nl: "Wild op je broodje midden in de Pijp — vlees dat ergens heeft gelopen voordat het op je afkwam.",
+      en: "Game on a ciabatta in the heart of De Pijp — meat with a past, not a marketing department.",
+    },
+    body: {
+      nl: "Binnen ruikt het naar rook en vet en iets wat je niet direct een naam wilt geven maar wel herkent: bos, kilte, een dier dat geen rekenschap heeft afgelegd van je schema in Google Agenda.\n\nDe Predetariër staat daar waar de Gerard Doustraat doet alsof ze gezellig is, terwijl er onder de huid van de stad altijd andere dingen zijn geweest: dingen met poten, met longen. Hier snijden ze wild alsof het geen gimmick is. Je bestelt rendang van hert, pastrami van gans, coppa van everzwijn — elk broodje een klein dossier tegen de industrie waar we onszelf zo graag in verschuilen.\n\nJe hoeft niet te geloven in hun filosofie om te weten dat het klopt tussen je kiezen door: smaak breed en donker en een beetje onbeholpen eerlijk, zoals echte smaak daar soms bij hoort als hij niet heeft leren lachen naar de-camera. Er is ook plantaardig; het voelt niet als camouflage maar als tegenwicht — alsof ze weten dat eten meer is dan jezelf rechtzetten tegen de wereld.\n\nIk sla geen trom voor jachtromantiek hier. Ik zeg dit: tussen de mokka's en bitterballen-hotspots is dit een plaats waar het vlees niet doet alsof het nooit geleefd heeft. Als je daar bang voor bent, sla je deze zaak maar over.\n\nWie blijft, eet met handen die eventjes trillen van kou of honger of van iets dat je van vroeger kent en nooit helemaal stil is geworden. Daarna loop je de straat weer in en proeft de stad scherper — alsof iemand het glas een slag heeft gegeven zonder dat je het zag aankomen.",
+      en: "Walk in and the air hits you — smoke, fat, the metallic undertone of something that used to run. This is De Predetariër: half wild butcher, half sandwich counter, all the way down Gerard Doustraat like a dare to the neighborhood's brunch industrial complex.\n\nThey'll put game on ciabatta like it's the most natural lunch in the world — venison rendang, goose pastrami, wild boar coppa — and in a way, it is. The menu reads like a manifesto if you're the kind of person who reads menus for ideology; if you're not, it still reads like lunch that tasted something before it met the bread.\n\nHere's the part where I don't waste your time with a seminar. Some people want their protein to arrive with amnesia — no history, no mud, no weather. This place doesn't do that. There's a plant-based option too, and it doesn't feel like a hostage situation; it feels like adults making choices without turning lunch into a purity contest.\n\nI'm not here to sell you on hunting cosplay. I'm here because the flavors are wild in the old sense: dark, stubborn, a little rough around the edges. That's what happens when meat isn't raised in a spreadsheet.\n\nOrder. Eat. Wipe your mouth. Step back onto the street with your urban armor a little cracked — in the good way, the hungry way, the way that reminds you you're still an animal who occasionally remembers it.",
+    },
+  },
+  {
     slug: "de-kas-amsterdam",
     category: "restaurant",
     name: "De Kas",
