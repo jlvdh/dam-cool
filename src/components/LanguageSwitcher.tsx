@@ -1,5 +1,5 @@
-import Link from "next/link";
-import type { Locale } from "@/content/siteContent";
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 
 type LanguageSwitcherProps = {
   locale: Locale;

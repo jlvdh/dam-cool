@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Section } from "@/components/Section";
 import { SiteFooter } from "@/components/SiteFooter";
 import { isLocale, locales, venueReviewsWithImages } from "@/content/reviews";
-import { siteContent } from "@/content/siteContent";
 
 type PageProps = {
   params: Promise<{ lang: string }>;
@@ -24,16 +24,14 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const locale = lang === "en" ? "en" : "nl";
-  const copy = siteContent[locale];
+  const t = await getTranslations({locale, namespace: "HomePage"});
   const path = `/${locale}`;
-  const title =
-    locale === "nl"
-      ? "Coole plekken in Amsterdam"
-      : "Cool places in Amsterdam";
+  const title = t("metadataTitle");
+  const description = t("subtitle");
 
   return {
     title,
-    description: copy.hero.subtitle,
+    description,
     alternates: {
       canonical: path,
       languages: {
@@ -44,7 +42,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title: `${title} | dam.cool`,
-      description: copy.hero.subtitle,
+      description,
       url: `${baseUrl}${path}`,
       siteName: "dam.cool",
       locale: locale === "nl" ? "nl_NL" : "en_US",
@@ -62,7 +60,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: `${title} | dam.cool`,
-      description: copy.hero.subtitle,
+      description,
       images: [logoImage],
     },
   };
@@ -71,8 +69,9 @@ export async function generateMetadata({
 export default async function LocalizedHome({ params }: PageProps) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
+  setRequestLocale(lang);
 
-  const copy = siteContent[lang];
+  const t = await getTranslations({locale: lang, namespace: "HomePage"});
   const spotlightReviews = venueReviewsWithImages(2);
 
   const jsonLd = {
@@ -84,7 +83,7 @@ export default async function LocalizedHome({ params }: PageProps) {
         name: "dam.cool",
         url: baseUrl,
         inLanguage: ["nl", "en"],
-        description: copy.hero.title,
+        description: t("title"),
       },
       {
         "@type": "Organization",
@@ -113,23 +112,23 @@ export default async function LocalizedHome({ params }: PageProps) {
 
       <main className="mt-6 grid gap-10">
         <section className="rounded-card p-section">
-          <p className="font-display mb-3 text-4xl text-dam-muted">{copy.hero.eyebrow}</p>
+          <p className="font-display mb-3 text-4xl text-dam-muted">{t("eyebrow")}</p>
           <h1 className="font-display mb-4 text-6xl leading-[0.9] tracking-tight md:text-8xl">
-            {copy.hero.title}
+            {t("title")}
           </h1>
-          <p className="max-w-[65ch] leading-7 text-dam-muted">{copy.hero.subtitle}</p>
+          <p className="max-w-[65ch] leading-7 text-dam-muted">{t("subtitle")}</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href={`/${lang}/reviews`}
               className="rounded-chip px-4 py-2 font-medium text-dam-ink underline underline-offset-4"
             >
-              {copy.hero.ctaPrimary}
+              {t("ctaPrimary")}
             </Link>
             <a
               href="#about"
               className="rounded-chip px-4 py-2 font-medium text-dam-muted underline underline-offset-4"
             >
-              {copy.hero.ctaSecondary}
+              {t("ctaSecondary")}
             </a>
           </div>
         </section>
@@ -164,7 +163,7 @@ export default async function LocalizedHome({ params }: PageProps) {
                         </h3>
                         <p className="mt-3 max-w-[50ch] leading-7 text-dam-muted">{caption}</p>
                         <p className="mt-3 font-medium underline underline-offset-4 group-hover:text-dam-soft">
-                          {copy.spotlight.readReview}
+                          {t("spotlightReadReview")}
                         </p>
                       </div>
                     </Link>
@@ -175,17 +174,17 @@ export default async function LocalizedHome({ params }: PageProps) {
           </section>
         ) : null}
 
-        <Section id="about" title={copy.about.title}>
-          <p className="max-w-[70ch] leading-7 text-dam-muted">{copy.about.body}</p>
+        <Section id="about" title={t("aboutTitle")}>
+          <p className="max-w-[70ch] leading-7 text-dam-muted">{t("aboutBody")}</p>
         </Section>
 
-        <Section id="contact" title={copy.contact.title}>
-          <p className="max-w-[70ch] leading-7 text-dam-muted">{copy.contact.body}</p>
+        <Section id="contact" title={t("contactTitle")}>
+          <p className="max-w-[70ch] leading-7 text-dam-muted">{t("contactBody")}</p>
           <a
             className="mt-3 inline-block font-semibold underline underline-offset-4"
             href="mailto:hello@dam.cool"
           >
-            {copy.contact.emailLabel}: hello@dam.cool
+            {t("contactEmailLabel")}: hello@dam.cool
           </a>
         </Section>
       </main>

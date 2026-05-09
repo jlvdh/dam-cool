@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { SiteFooter } from "@/components/SiteFooter";
 import {
@@ -23,13 +24,15 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const isNl = lang === "nl";
+  const locale = isNl ? "nl" : "en";
+  const t = await getTranslations({locale, namespace: "Reviews"});
   const path = `/${isNl ? "nl" : "en"}/reviews`;
+  const title = t("metadataTitle");
+  const description = t("metadataDescription");
 
   return {
-    title: isNl ? "Reviews Amsterdam" : "Amsterdam Reviews",
-    description: isNl
-      ? "Reviews van restaurants, bars, cafes en andere venues in Amsterdam."
-      : "Reviews for restaurants, bars, cafes and other Amsterdam venues.",
+    title,
+    description,
     alternates: {
       canonical: path,
       languages: {
@@ -39,12 +42,8 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: isNl
-        ? "Reviews Amsterdam | dam.cool"
-        : "Amsterdam Reviews | dam.cool",
-      description: isNl
-        ? "Reviews van restaurants, bars, cafes en andere venues in Amsterdam."
-        : "Reviews for restaurants, bars, cafes and other Amsterdam venues.",
+      title: `${title} | dam.cool`,
+      description,
       url: path,
       type: "website",
     },
@@ -54,18 +53,8 @@ export async function generateMetadata({
 export default async function ReviewsIndexPage({ params }: PageProps) {
   const { lang } = await params;
   if (!isLocale(lang)) notFound();
-  const copy =
-    lang === "nl"
-      ? {
-          title: "Venue Reviews",
-          categories: "Categorieen",
-          latest: "Nieuwste reviews",
-        }
-      : {
-          title: "Venue Reviews",
-          categories: "Categories",
-          latest: "Latest reviews",
-        };
+  setRequestLocale(lang);
+  const t = await getTranslations({locale: lang, namespace: "Reviews"});
 
   return (
     <>
@@ -73,10 +62,10 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
       <div className="mb-4 flex justify-end">
         <LanguageSwitcher locale={lang} nlHref="/nl/reviews" enHref="/en/reviews" />
       </div>
-      <h1 className="font-display text-6xl">{copy.title}</h1>
+      <h1 className="font-display text-6xl">{t("indexTitle")}</h1>
 
       <section className="mt-8">
-        <h2 className="font-display text-3xl">{copy.categories}</h2>
+        <h2 className="font-display text-3xl">{t("categories")}</h2>
         <ul className="mt-3 flex flex-wrap gap-3">
           {reviewCategoriesWithReviews.map((category) => (
             <li key={category}>
@@ -92,7 +81,7 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
       </section>
 
       <section className="mt-10">
-        <h2 className="font-display text-3xl">{copy.latest}</h2>
+        <h2 className="font-display text-3xl">{t("latest")}</h2>
         <ul className="mt-3 grid gap-3">
           {venueReviews.map((review) => (
             <li key={review.slug}>

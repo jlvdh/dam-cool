@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { SiteFooter } from "@/components/SiteFooter";
 import {
@@ -59,6 +60,8 @@ export async function generateMetadata({
 export default async function CategoryPage({ params }: PageProps) {
   const { lang, category } = await params;
   if (!isLocale(lang) || !isReviewCategory(category)) notFound();
+  setRequestLocale(lang);
+  const t = await getTranslations({locale: lang, namespace: "Reviews"});
 
   const reviews = venueReviews.filter((review) => review.category === category);
   if (reviews.length === 0) notFound();
@@ -86,7 +89,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 href={`/${lang}/reviews/${category}/${review.slug}`}
                 className="mt-2 inline-block underline underline-offset-4"
               >
-                {lang === "nl" ? "Lees review" : "Read review"}
+                {t("readReview")}
               </Link>
             </article>
           </li>

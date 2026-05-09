@@ -1,0 +1,33 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "categories": "Categories",
+    "recentReviews": "Recent reviews",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "HomePage": {
+    "metadataTitle": "Cool places in Amsterdam",
+    "eyebrow": "Dam Cool",
+    "title": "Damn cool places in Amsterdam.",
+    "subtitle": "Forget the laminated top tens and the 'authentic Amsterdam' racket. dam.cool chases rooms that still have a pulse - coffee worth walking for, crates of vinyl you actually dig through, art with teeth, nights that outlast the last tram, and corners this city hasn't packaged for the feed yet.",
+    "ctaPrimary": "Browse reviews",
+    "ctaSecondary": "Read about us",
+    "aboutTitle": "About dam.cool",
+    "aboutBody": "No noise, no endless lists. Just places worth your time. Fast, visual and easy to browse.",
+    "contactTitle": "Send a tip",
+    "contactBody": "Know a place that belongs here? Send a short recommendation.",
+    "contactEmailLabel": "Email us",
+    "spotlightReadReview": "Read review",
+    "footer": "dam.cool - cool places in Amsterdam"
+  },
+  "Reviews": {
+    "indexTitle": "Venue Reviews",
+    "categories": "Categories",
+    "latest": "Latest reviews",
+    "metadataTitle": "Amsterdam Reviews",
+    "metadataDescription": "Reviews for restaurants, bars, cafes and other Amsterdam venues.",
+    "readReview": "Read review",
+    "backToCategory": "Back to category"
+  }
+}
