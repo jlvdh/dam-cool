@@ -60,7 +60,7 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
     <>
     <main className="mx-auto max-w-[1080px] px-5 pb-12 pt-8">
       <div className="mb-4 flex justify-end">
-        <LanguageSwitcher locale={lang} nlHref="/nl/reviews" enHref="/en/reviews" />
+        <LanguageSwitcher locale={lang} pathname="/reviews" />
       </div>
       <h1 className="font-display text-6xl">{t("indexTitle")}</h1>
 
@@ -70,7 +70,7 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
           {reviewCategoriesWithReviews.map((category) => (
             <li key={category}>
               <Link
-                href={`/${lang}/reviews/${category}`}
+                href={`/reviews/${category}`}
                 className="underline underline-offset-4"
               >
                 {category}
@@ -86,7 +86,7 @@ export default async function ReviewsIndexPage({ params }: PageProps) {
           {venueReviews.map((review) => (
             <li key={review.slug}>
               <Link
-                href={`/${lang}/reviews/${review.category}/${review.slug}`}
+                href={`/reviews/${review.category}/${review.slug}`}
                 className="underline underline-offset-4"
               >
                 {review.name} ({review.category})

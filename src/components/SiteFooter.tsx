@@ -14,7 +14,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
   const t = useTranslations("HomePage");
   const nav = useTranslations("Navigation");
   const homeReviews = venueReviews.slice(0, 3);
-  const homeHref = `/${locale}`;
+  const homeHref = "/";
 
   return (
     <footer className="mt-auto border-t border-dam-muted/25 pt-10 pb-10 text-dam-muted">
@@ -31,7 +31,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
               {reviewCategoriesWithReviews.map((category) => (
                 <li key={category}>
                   <Link
-                    href={`/${locale}/reviews/${category}`}
+                    href={`/reviews/${category}`}
                     className="underline underline-offset-4 hover:text-dam-ink"
                   >
                     {category}
@@ -52,7 +52,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
               {homeReviews.map((review) => (
                 <li key={review.slug}>
                   <Link
-                    href={`/${locale}/reviews/${review.category}/${review.slug}`}
+                    href={`/reviews/${review.category}/${review.slug}`}
                     className="underline underline-offset-4 hover:text-dam-ink"
                   >
                     {review.name}
@@ -81,7 +81,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
               </li>
               <li>
                 <Link
-                  href={`/${locale}/reviews`}
+                  href="/reviews"
                   className="underline underline-offset-4 hover:text-dam-ink"
                 >
                   {t("ctaPrimary")}

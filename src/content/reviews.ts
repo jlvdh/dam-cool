@@ -6,6 +6,7 @@ const reviewCategories = [
   "restaurant",
   "bar",
   "cafe",
+  "lunch",
   "museum",
   "club",
   "hotel",
@@ -157,6 +158,23 @@ export const venueReviews: VenueReview[] = [
         },
       },
     ],
+  },
+  {
+    slug: "alberto-pozzetto-de-pijp",
+    category: "lunch",
+    name: "Alberto Pozzetto",
+    neighborhood: "De Pijp",
+    address: "1e Van der Helststraat 57, 1073 AD Amsterdam",
+    rating: 4.5,
+    publishedAt: "2026-05-09",
+    excerpt: {
+      nl: "Broodjes, traiteur en koffie voor Italiaanse prijzen — een Pijper die het concept van brunch nooit heeft hoeven leren.",
+      en: "Sandwiches, deli counter, coffee at Italian prices — a De Pijp institution that never had to \"learn brunch.\"",
+    },
+    body: {
+      nl: "Ik weet nog dat ik hier voor het eerst binnenkwam — of eigenlijk: ik weet het vooral zo omdat de herinnering zó doorsnee is dat hij scherp bleef hangen: geurtje van espresso, gekletter van schaaltjes, iemand voor je die tijd heeft maar geen geduld voor gezwets. Alberto Pozzetto is geen adres voor een date met twaalf gerechten fotograferen; het is waar je naartoe gaat als je buik zegt 'broodje' en je hoofd nog steeds, tegen beter weten in, een beetje Noord-Italiaans wil worden.\n\nOfficieel zijn ze dit en dat — broodjeszaak hier, traiteur daar — maar in de praktijk voelt het als zo'n echte Amsterdamse klassieker die zich niet voor je persoonlijke merk hoeft te verontschuldigen. De Pijp om je heen doet tegenwoordig veel moeite om leuk te zijn; deze zaak hoeft alleen maar te zijn zoals die altijd al was: gevuld met vleeswaren achter glas, kazen waar je hoofdpijn van zou moeten krijgen van keuzestress maar die dat niet doen, en dat roffeltje aan vaste gasten waar je jezelf automatisch tussen schuift als je wilt horen hoe een buurt zichzelf beschermt tegen te veel succes.\n\nEn die koffie dan. Niet groot, geen schattig foamhartje erop — gewoon kop en prijs waar je nog kunt inhaleren voordat je morrelend aan je virtuele spaarrekening blijft. Het is waar we het tegenwoordig maar zelden over durven te hebben, omdat het te veel klinkt als een opiniestuk: 'Italiaanse prijzen' in een stad die je voor een halve latte soms meer laat aftikken dan je wilt toegeven.\n\nPak een broodje, neem plaats op de stoep of níet — maakt niet uit. Je komt niet voor het plaatje. Je komt omdat er nog ergens wordt gezeten waar lunch geen 'experience' hoeft te zijn maar gewoon eten tussen twee momenten door — met smaak die niet vraagt om applaus. Als je daar warm van wordt, ben je géén sucker; je bent gewoon nog iemand voor wie eten nog mag bestaan.",
+      en: "You want the honest version? Amsterdam will sell you coffee like it owes you therapy — steamed milk, latte art heart, existential price tag. Alberto Pozzetto is something else entirely: counter, deli, Old World rhythm. Traiteur, sandwich shop, whichever label stops you from overthinking lunch.\n\nDe Pijp has spent the last decade learning to love itself on Instagram. This place skipped class. Behind the glass there's mortadella that doesn't need copywriting, olives that survived the commute from somewhere sunnier than our collective mood, pasta salads that know their job isn't reinventing starch. Nobody here is grooming you into a TikTok reel. You're here to chew, swallow, caffeinate, repeat.\n\nThe coffee — small, fierce, stubbornly inexpensive by local standards — is the quiet argument the whole strip makes against the racket three doors down. You're not chasing \"third wave\"; you're reminding your wallet it still remembers what a cup costs when nobody's pretending the beans were raised on poetry.\n\nStand at the counter. Order in whatever language fragments you have handy. Eat your broodje with the focused concentration usually reserved for smuggling pastries through airport security. Leave before you confuse reliability with boredom — they're cousins, but only one of them gets you fed while the brunch waitlist outside multiplies like mildew.\n\nThis is the Amsterdam that didn't ask permission to survive the tastemakers. Long may it hiss behind the espresso machine.",
+    },
   },
   {
     slug: "de-kas-amsterdam",

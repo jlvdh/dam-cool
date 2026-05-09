@@ -70,11 +70,7 @@ export default async function CategoryPage({ params }: PageProps) {
     <>
     <main className="mx-auto max-w-[1080px] px-5 pb-12 pt-8">
       <div className="mb-4 flex justify-end">
-        <LanguageSwitcher
-          locale={lang}
-          nlHref={`/nl/reviews/${category}`}
-          enHref={`/en/reviews/${category}`}
-        />
+        <LanguageSwitcher locale={lang} pathname={`/reviews/${category}`} />
       </div>
       <p className="text-sm text-dam-muted">/{lang}/reviews/{category}</p>
       <h1 className="font-display mt-2 text-6xl">{category}</h1>
@@ -86,7 +82,7 @@ export default async function CategoryPage({ params }: PageProps) {
               <h2 className="font-display text-3xl">{review.name}</h2>
               <p className="mt-1 text-dam-muted">{review.excerpt[lang]}</p>
               <Link
-                href={`/${lang}/reviews/${category}/${review.slug}`}
+                href={`/reviews/${category}/${review.slug}`}
                 className="mt-2 inline-block underline underline-offset-4"
               >
                 {t("readReview")}

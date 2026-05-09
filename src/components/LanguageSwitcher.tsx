@@ -3,15 +3,18 @@ import type { Locale } from "@/i18n/routing";
 
 type LanguageSwitcherProps = {
   locale: Locale;
-  nlHref: string;
-  enHref: string;
+  /** Pathname without locale prefix. `Link` from next-intl adds `/nl` or `/en`. */
+  pathname?: string;
 };
 
-export function LanguageSwitcher({ locale, nlHref, enHref }: LanguageSwitcherProps) {
+export function LanguageSwitcher({ locale, pathname = "/" }: LanguageSwitcherProps) {
+  const path = pathname || "/";
+
   return (
     <div className="inline-flex gap-2" aria-label="Language switcher">
       <Link
-        href={nlHref}
+        href={path}
+        locale="nl"
         className={`rounded-chip px-2.5 py-1 text-xs ${
           locale === "nl"
             ? "font-semibold text-dam-ink underline underline-offset-4"
@@ -21,7 +24,8 @@ export function LanguageSwitcher({ locale, nlHref, enHref }: LanguageSwitcherPro
         NL
       </Link>
       <Link
-        href={enHref}
+        href={path}
+        locale="en"
         className={`rounded-chip px-2.5 py-1 text-xs ${
           locale === "en"
             ? "font-semibold text-dam-ink underline underline-offset-4"

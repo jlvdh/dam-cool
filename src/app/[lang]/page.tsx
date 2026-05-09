@@ -98,7 +98,7 @@ export default async function LocalizedHome({ params }: PageProps) {
   return (
     <div className="mx-auto max-w-[1080px] px-5 pb-12 pt-6">
       <header className="rounded-card flex flex-col items-center gap-4 p-6">
-        <Link href={`/${lang}`} className="flex justify-center hover:opacity-90">
+        <Link href="/" className="flex justify-center hover:opacity-90">
           <Image
             src={logoImage}
             alt="dam.cool logo lettering"
@@ -107,7 +107,7 @@ export default async function LocalizedHome({ params }: PageProps) {
             priority
           />
         </Link>
-        <LanguageSwitcher locale={lang} nlHref="/nl" enHref="/en" />
+        <LanguageSwitcher locale={lang} pathname="/" />
       </header>
 
       <main className="mt-6 grid gap-10">
@@ -119,7 +119,7 @@ export default async function LocalizedHome({ params }: PageProps) {
           <p className="max-w-[65ch] leading-7 text-dam-muted">{t("subtitle")}</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
-              href={`/${lang}/reviews`}
+              href="/reviews"
               className="rounded-chip px-4 py-2 font-medium text-dam-ink underline underline-offset-4"
             >
               {t("ctaPrimary")}
@@ -138,7 +138,7 @@ export default async function LocalizedHome({ params }: PageProps) {
             <div className="grid gap-8 md:grid-cols-2 md:gap-10">
               {spotlightReviews.map((review, index) => {
                 const heroImage = review.images![0];
-                const href = `/${lang}/reviews/${review.category}/${review.slug}`;
+                const href = `/reviews/${review.category}/${review.slug}`;
                 const caption =
                   heroImage.caption?.[lang] ?? heroImage.alt[lang];
                 return (

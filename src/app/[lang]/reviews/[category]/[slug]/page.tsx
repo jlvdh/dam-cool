@@ -162,11 +162,10 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       <div className="mb-4 flex justify-end">
         <LanguageSwitcher
           locale={lang}
-          nlHref={`/nl/reviews/${category}/${slug}`}
-          enHref={`/en/reviews/${category}/${slug}`}
+          pathname={`/reviews/${category}/${slug}`}
         />
       </div>
-      <Link href={`/${lang}/reviews/${category}`} className="underline underline-offset-4">
+      <Link href={`/reviews/${category}`} className="underline underline-offset-4">
         {t("backToCategory")}
       </Link>
       <p className="mt-6 text-sm text-dam-muted">
