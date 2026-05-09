@@ -23,12 +23,31 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   const isNl = lang === "nl";
+  const path = `/${isNl ? "nl" : "en"}/reviews`;
 
   return {
-    title: isNl ? "Reviews" : "Reviews",
+    title: isNl ? "Reviews Amsterdam" : "Amsterdam Reviews",
     description: isNl
       ? "Reviews van restaurants, bars, cafes en andere venues in Amsterdam."
       : "Reviews for restaurants, bars, cafes and other Amsterdam venues.",
+    alternates: {
+      canonical: path,
+      languages: {
+        nl: "/nl/reviews",
+        en: "/en/reviews",
+        "x-default": "/nl/reviews",
+      },
+    },
+    openGraph: {
+      title: isNl
+        ? "Reviews Amsterdam | dam.cool"
+        : "Amsterdam Reviews | dam.cool",
+      description: isNl
+        ? "Reviews van restaurants, bars, cafes en andere venues in Amsterdam."
+        : "Reviews for restaurants, bars, cafes and other Amsterdam venues.",
+      url: path,
+      type: "website",
+    },
   };
 }
 

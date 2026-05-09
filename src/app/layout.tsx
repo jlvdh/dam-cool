@@ -28,13 +28,6 @@ export const metadata: Metadata = {
     "dam.cool",
     "things to do Amsterdam",
   ],
-  alternates: {
-    canonical: "/",
-    languages: {
-      nl: "/?lang=nl",
-      en: "/?lang=en",
-    },
-  },
   openGraph: {
     title: "dam.cool | Coole plekken in Amsterdam",
     description:
@@ -61,14 +54,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang?: string }>;
 }>) {
+  const { lang } = await params;
+  const locale = lang === "en" ? "en" : "nl";
+
   return (
     <html
-      lang="nl"
+      lang={locale}
       className={`${displayFont.variable} ${bodyFont.variable} ${bodyFont.className}`}
     >
       <body className="bg-white text-dam-ink antialiased">{children}</body>

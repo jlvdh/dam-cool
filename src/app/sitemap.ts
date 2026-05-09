@@ -9,11 +9,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://dam.cool";
   const now = new Date();
 
+  const homeEntries: MetadataRoute.Sitemap = locales.map((lang) => ({
+    url: `${baseUrl}/${lang}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 1,
+    alternates: {
+      languages: {
+        nl: `${baseUrl}/nl`,
+        en: `${baseUrl}/en`,
+        "x-default": `${baseUrl}/nl`,
+      },
+    },
+  }));
+
   const reviewIndexEntries: MetadataRoute.Sitemap = locales.map((lang) => ({
     url: `${baseUrl}/${lang}/reviews`,
     lastModified: now,
     changeFrequency: "weekly",
     priority: 0.9,
+    alternates: {
+      languages: {
+        nl: `${baseUrl}/nl/reviews`,
+        en: `${baseUrl}/en/reviews`,
+        "x-default": `${baseUrl}/nl/reviews`,
+      },
+    },
   }));
 
   const reviewCategoryEntries: MetadataRoute.Sitemap = locales.flatMap((lang) =>
@@ -22,6 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.8,
+      alternates: {
+        languages: {
+          nl: `${baseUrl}/nl/reviews/${category}`,
+          en: `${baseUrl}/en/reviews/${category}`,
+          "x-default": `${baseUrl}/nl/reviews/${category}`,
+        },
+      },
     })),
   );
 
@@ -31,22 +59,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(review.publishedAt),
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: {
+        languages: {
+          nl: `${baseUrl}/nl/reviews/${review.category}/${review.slug}`,
+          en: `${baseUrl}/en/reviews/${review.category}/${review.slug}`,
+          "x-default": `${baseUrl}/nl/reviews/${review.category}/${review.slug}`,
+        },
+      },
     })),
   );
 
   return [
-    {
-      url: `${baseUrl}/`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 1,
-      alternates: {
-        languages: {
-          nl: `${baseUrl}/?lang=nl`,
-          en: `${baseUrl}/?lang=en`,
-        },
-      },
-    },
+    ...homeEntries,
     ...reviewIndexEntries,
     ...reviewCategoryEntries,
     ...reviewDetailEntries,
