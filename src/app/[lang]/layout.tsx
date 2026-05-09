@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Jersey_25, Montserrat } from "next/font/google";
-import "./globals.css";
+import {hasLocale} from "next-intl";
+import {NextIntlClientProvider} from "next-intl";
+import {notFound} from "next/navigation";
+import {setRequestLocale} from "next-intl/server";
+import {routing} from "@/i18n/routing";
+import "../globals.css";
 
 const displayFont = Jersey_25({
   variable: "--font-jersey",
@@ -54,22 +59,32 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+type LocaleLayoutProps = Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ lang: string }>;
+}>;
+
+export function generateStaticParams() {
+  return routing.locales.map((lang) => ({lang}));
+}
+
+export default async function LocaleLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ lang?: string }>;
-}>) {
+}: LocaleLayoutProps) {
   const { lang } = await params;
-  const locale = lang === "en" ? "en" : "nl";
+  if (!hasLocale(routing.locales, lang)) notFound();
+
+  setRequestLocale(lang);
 
   return (
     <html
-      lang={locale}
+      lang={lang}
       className={`${displayFont.variable} ${bodyFont.variable} ${bodyFont.className}`}
     >
-      <body className="bg-white text-dam-ink antialiased">{children}</body>
+      <body className="bg-white text-dam-ink antialiased">
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
     </html>
   );
 }

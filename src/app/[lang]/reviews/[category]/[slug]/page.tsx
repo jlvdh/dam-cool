@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
+import {getTranslations, setRequestLocale} from "next-intl/server";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { SiteFooter } from "@/components/SiteFooter";
 import {
@@ -82,6 +83,8 @@ export async function generateMetadata({
 export default async function ReviewDetailPage({ params }: PageProps) {
   const { lang, category, slug } = await params;
   if (!isLocale(lang) || !isReviewCategory(category)) notFound();
+  setRequestLocale(lang);
+  const t = await getTranslations({locale: lang, namespace: "Reviews"});
 
   const review = venueReviews.find(
     (item) => item.category === category && item.slug === slug,
@@ -164,7 +167,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         />
       </div>
       <Link href={`/${lang}/reviews/${category}`} className="underline underline-offset-4">
-        {lang === "nl" ? "Terug naar categorie" : "Back to category"}
+        {t("backToCategory")}
       </Link>
       <p className="mt-6 text-sm text-dam-muted">
         {review.category} · {review.neighborhood} · {review.rating}

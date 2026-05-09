@@ -1,16 +1,18 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import {useTranslations} from "next-intl";
 import {
   reviewCategoriesWithReviews,
   venueReviews,
 } from "@/content/reviews";
-import { siteContent, type Locale } from "@/content/siteContent";
+import type { Locale } from "@/i18n/routing";
 
 type SiteFooterProps = {
   locale: Locale;
 };
 
 export function SiteFooter({ locale }: SiteFooterProps) {
-  const copy = siteContent[locale];
+  const t = useTranslations("HomePage");
+  const nav = useTranslations("Navigation");
   const homeReviews = venueReviews.slice(0, 3);
   const homeHref = `/${locale}`;
 
@@ -23,7 +25,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
               id="footer-categories-heading"
               className="font-display mb-4 text-xl leading-none tracking-tight text-dam-ink md:text-2xl"
             >
-              {copy.nav.categories}
+              {nav("categories")}
             </h2>
             <ul className="flex flex-col gap-3 text-sm">
               {reviewCategoriesWithReviews.map((category) => (
@@ -44,7 +46,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
               id="footer-recent-heading"
               className="font-display mb-4 text-xl leading-none tracking-tight text-dam-ink md:text-2xl"
             >
-              {copy.nav.recentReviews}
+              {nav("recentReviews")}
             </h2>
             <ul className="flex flex-col gap-3 text-sm">
               {homeReviews.map((review) => (
@@ -74,7 +76,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
             <ul className="flex flex-col gap-3 text-sm">
               <li>
                 <Link href={homeHref} className="underline underline-offset-4 hover:text-dam-ink">
-                  {copy.nav.home}
+                  {nav("home")}
                 </Link>
               </li>
               <li>
@@ -82,7 +84,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
                   href={`/${locale}/reviews`}
                   className="underline underline-offset-4 hover:text-dam-ink"
                 >
-                  {copy.hero.ctaPrimary}
+                  {t("ctaPrimary")}
                 </Link>
               </li>
               <li>
@@ -94,7 +96,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
                 </a>
               </li>
             </ul>
-            <p className="mt-6 max-w-[36ch] text-sm leading-6">{copy.footer}</p>
+            <p className="mt-6 max-w-[36ch] text-sm leading-6">{t("footer")}</p>
           </nav>
         </div>
       </div>

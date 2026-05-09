@@ -1,0 +1,33 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "categories": "Categorieen",
+    "recentReviews": "Recente reviews",
+    "about": "Over",
+    "contact": "Contact"
+  },
+  "HomePage": {
+    "metadataTitle": "Coole plekken in Amsterdam",
+    "eyebrow": "Dam Cool",
+    "title": "Damn cool places in Amsterdam.",
+    "subtitle": "Geen geplastificeerde top-tienlijsten en geen 'echt Amsterdam'-theater. Dit gaat om zaken met nog een hartslag: koffie die je fietsrit waard is, kratten platen waar je doorheen wroet, kunst met bijt, nachten die langer duren dan de laatste tram, en hoeken die deze stad nog niet heeft klaargestoomd voor je feed.",
+    "ctaPrimary": "Bekijk reviews",
+    "ctaSecondary": "Lees meer",
+    "aboutTitle": "Over dam.cool",
+    "aboutBody": "Geen ruis, geen eindeloze lijsten. Alleen plekken waar je echt heen wil. Snel, visueel en makkelijk doorzoekbaar.",
+    "contactTitle": "Tip insturen",
+    "contactBody": "Ken je een plek die hier thuishoort? Stuur een korte tip.",
+    "contactEmailLabel": "Mail ons",
+    "spotlightReadReview": "Lees review",
+    "footer": "dam.cool - coole plekken in Amsterdam"
+  },
+  "Reviews": {
+    "indexTitle": "Venue Reviews",
+    "categories": "Categorieen",
+    "latest": "Nieuwste reviews",
+    "metadataTitle": "Reviews Amsterdam",
+    "metadataDescription": "Reviews van restaurants, bars, cafes en andere venues in Amsterdam.",
+    "readReview": "Lees review",
+    "backToCategory": "Terug naar categorie"
+  }
+}

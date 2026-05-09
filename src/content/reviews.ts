@@ -1,8 +1,8 @@
-import type { Locale } from "@/content/siteContent";
+import type { Locale } from "@/i18n/routing";
 
 export const locales: Locale[] = ["nl", "en"];
 
-export const reviewCategories = [
+const reviewCategories = [
   "restaurant",
   "bar",
   "cafe",
