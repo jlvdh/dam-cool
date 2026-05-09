@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo-dam-cool.svg",
+        url: "/logo-dam-cool.png",
         width: 1200,
         height: 630,
         alt: "dam.cool logo",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "dam.cool | Coole plekken in Amsterdam",
     description:
       "Minimalistische gids met coole plekken in Amsterdam, in NL en EN.",
-    images: ["/logo-dam-cool.svg"],
+    images: ["/logo-dam-cool.png"],
   },
 };
 

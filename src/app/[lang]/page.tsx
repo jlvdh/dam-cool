@@ -13,7 +13,7 @@ type PageProps = {
 };
 
 const baseUrl = "https://dam.cool";
-const logoImage = "/logo-dam-cool.svg";
+const logoImage = "/logo-dam-cool.png";
 
 export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
