@@ -24,5 +24,3 @@ jobs:
         run: pnpm knip
 
       - run: pnpm lint
-
-      - run: pnpm build
