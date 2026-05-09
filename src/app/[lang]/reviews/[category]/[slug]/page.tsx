@@ -17,7 +17,7 @@ type PageProps = {
 };
 
 const baseUrl = "https://dam.cool";
-const fallbackImage = "/logo-dam-cool.svg";
+const fallbackImage = "/logo-dam-cool.png";
 
 export async function generateStaticParams() {
   return locales.flatMap((lang) =>
