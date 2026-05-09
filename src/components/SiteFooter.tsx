@@ -12,7 +12,7 @@ type SiteFooterProps = {
 export function SiteFooter({ locale }: SiteFooterProps) {
   const copy = siteContent[locale];
   const homeReviews = venueReviews.slice(0, 3);
-  const homeHref = locale === "nl" ? "/?lang=nl" : "/?lang=en";
+  const homeHref = `/${locale}`;
 
   return (
     <footer className="mt-auto border-t border-dam-muted/25 pt-10 pb-10 text-dam-muted">

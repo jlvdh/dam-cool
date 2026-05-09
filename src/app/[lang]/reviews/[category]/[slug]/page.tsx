@@ -15,6 +15,9 @@ type PageProps = {
   params: Promise<{ lang: string; category: string; slug: string }>;
 };
 
+const baseUrl = "https://dam.cool";
+const fallbackImage = "/logo-dam-cool.svg";
+
 export async function generateStaticParams() {
   return locales.flatMap((lang) =>
     venueReviews.map((review) => ({
@@ -29,21 +32,49 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { lang, category, slug } = await params;
+  const locale = lang === "en" ? "en" : "nl";
   const review = venueReviews.find(
     (item) => item.category === category && item.slug === slug,
   );
 
   if (!review) return {};
 
+  const path = `/${locale}/reviews/${category}/${slug}`;
+  const title = `${review.name} Amsterdam review`;
+  const description = review.excerpt[locale];
+  const image = review.images?.[0]?.src ?? fallbackImage;
+
   return {
-    title: `${review.name} review`,
-    description: review.excerpt[lang === "nl" ? "nl" : "en"],
+    title,
+    description,
     alternates: {
-      canonical: `/${lang}/reviews/${category}/${slug}`,
+      canonical: path,
       languages: {
         nl: `/nl/reviews/${category}/${slug}`,
         en: `/en/reviews/${category}/${slug}`,
+        "x-default": `/nl/reviews/${category}/${slug}`,
       },
+    },
+    openGraph: {
+      title: `${title} | dam.cool`,
+      description,
+      url: `${baseUrl}${path}`,
+      type: "article",
+      locale: locale === "nl" ? "nl_NL" : "en_US",
+      alternateLocale: locale === "nl" ? ["en_US"] : ["nl_NL"],
+      publishedTime: review.publishedAt,
+      images: [
+        {
+          url: image,
+          alt: review.images?.[0]?.alt[locale] ?? `${review.name} review`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | dam.cool`,
+      description,
+      images: [image],
     },
   };
 }
@@ -57,6 +88,70 @@ export default async function ReviewDetailPage({ params }: PageProps) {
   );
 
   if (!review) notFound();
+
+  const path = `/${lang}/reviews/${category}/${slug}`;
+  const reviewUrl = `${baseUrl}${path}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "dam.cool",
+            item: `${baseUrl}/${lang}`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: lang === "nl" ? "Reviews" : "Reviews",
+            item: `${baseUrl}/${lang}/reviews`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: category,
+            item: `${baseUrl}/${lang}/reviews/${category}`,
+          },
+          {
+            "@type": "ListItem",
+            position: 4,
+            name: review.name,
+            item: reviewUrl,
+          },
+        ],
+      },
+      {
+        "@type": "Review",
+        "@id": `${reviewUrl}#review`,
+        url: reviewUrl,
+        name: `${review.name} Amsterdam review`,
+        inLanguage: lang,
+        datePublished: review.publishedAt,
+        reviewBody: review.body[lang],
+        author: {
+          "@type": "Organization",
+          name: "dam.cool",
+          url: baseUrl,
+        },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: review.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        itemReviewed: {
+          "@type": category === "restaurant" ? "Restaurant" : "LocalBusiness",
+          name: review.name,
+          address: review.address,
+          areaServed: "Amsterdam",
+          image: review.images?.[0]?.src,
+        },
+      },
+    ],
+  };
 
   return (
     <>
@@ -101,12 +196,16 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       )}
       
       <article className="mt-8 space-y-4 leading-8">
-        {review.body[lang].split('\n\n').map((paragraph, index) => (
+        {review.body[lang].split("\n\n").map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
         ))}
       </article>
     </main>
     <SiteFooter locale={lang} />
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
     </>
   );
 }

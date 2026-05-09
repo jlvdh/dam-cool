@@ -25,15 +25,34 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { lang, category } = await params;
+  const locale = lang === "en" ? "en" : "nl";
+  const path = `/${locale}/reviews/${category}`;
+  const title =
+    locale === "nl"
+      ? `${category} reviews in Amsterdam`
+      : `${category} reviews in Amsterdam`;
+  const description =
+    locale === "nl"
+      ? `Alle ${category} reviews op dam.cool, met adressen en eerlijke tips voor Amsterdam.`
+      : `All ${category} reviews on dam.cool, with addresses and honest Amsterdam tips.`;
+
   return {
-    title:
-      lang === "nl"
-        ? `${category} reviews Amsterdam`
-        : `${category} reviews Amsterdam`,
-    description:
-      lang === "nl"
-        ? `Alle ${category} reviews op dam.cool.`
-        : `All ${category} reviews on dam.cool.`,
+    title,
+    description,
+    alternates: {
+      canonical: path,
+      languages: {
+        nl: `/nl/reviews/${category}`,
+        en: `/en/reviews/${category}`,
+        "x-default": `/nl/reviews/${category}`,
+      },
+    },
+    openGraph: {
+      title: `${title} | dam.cool`,
+      description,
+      url: path,
+      type: "website",
+    },
   };
 }
 
